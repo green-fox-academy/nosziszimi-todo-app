@@ -12,17 +12,40 @@ import java.util.Scanner;
  * Created by Nóra on 2017. 04. 06..
  */
 public class ToDoList {
-  Path toDoListPath;
-  File toDoList;
+  Path path;
+  File file;
+  ArrayList<ToDo> tasks;
+  ArrayList<String> linesOfFile;
 
   public ToDoList() {
-    toDoListPath = Paths.get("assets/tasks.csv");
-    toDoList = new File(String.valueOf(toDoListPath));
+    path = Paths.get("assets/tasks.csv");
+    file = new File(String.valueOf(path));
+    tasks = new ArrayList<>();
+    linesOfFile = new ArrayList<>();
+  }
+
+  void readInFile() {
+    try {
+      Scanner fileScanner = new Scanner(file);
+      while (fileScanner.hasNext()) {
+        linesOfFile.add(fileScanner.nextLine());
+      }
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+
+  void linesToTodo() {
+    String[] columns;
+    for (String line : linesOfFile) {
+      columns = line.split(";");
+      tasks.add(new ToDo(columns[0], columns[1]));
+    }
   }
 
   void list() {
     try {
-      Scanner taskScanner = new Scanner(toDoList);
+      Scanner taskScanner = new Scanner(file);
       System.out.println();
       int i = 1;
       if (!taskScanner.hasNext()) {
@@ -40,12 +63,28 @@ public class ToDoList {
 
   void add(String[] args) {
     List<String> newTask = new ArrayList<>();
-    newTask.add(args[1]);
+    tasks.add(new ToDo(args[1]));
     try {
-      Files.write(toDoListPath, newTask);
+      Files.write(path, newTask);
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+  }
+
+  void check(String[] args) {
+
+    try {
+      List<String> lines = Files.readAllLines(path);
+      ArrayList<String> lines2 = new ArrayList<>();
+      for (String line : lines) {
+        lines2.add(line);
+      }
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
   }
 }
 

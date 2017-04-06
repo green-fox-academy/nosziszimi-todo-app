@@ -14,6 +14,8 @@ public class App {
       todo.list();
     } else if (args.length > 0 && args[0].equals("-a")) {
       todo.add(args);
+    } else if (args.length > 0 && args[0].equals("-c")) {
+      todo.check(args);
     }
   }
 }
