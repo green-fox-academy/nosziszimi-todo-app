@@ -16,7 +16,7 @@ public class ToDo {
   }
 
   public ToDo(String check, String task) {
-    if (check.equals("1")){
+    if (check.equals("[x]")){
       isDone = true;
     } else {
       isDone = false;

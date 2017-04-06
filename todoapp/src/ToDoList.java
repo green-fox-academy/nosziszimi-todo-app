@@ -43,6 +43,31 @@ public class ToDoList {
     }
   }
 
+  void listOfToDoFromFile() {
+    readInFile();
+    linesToTodo();
+  }
+
+  void writeListToFile() {
+    List<String> lines = new ArrayList<>();
+    for (int j = 0; j < tasks.size(); j++ ) {
+      String check;
+      String line;
+      if (tasks.get(j).isDone) {
+        check = "[x]";
+      } else {
+        check = "[ ]";
+      }
+      line = check + ";" + tasks.get(j).task;
+      lines.add(line);
+      try {
+        Files.write(path, lines);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
   void list() {
     try {
       Scanner taskScanner = new Scanner(file);
