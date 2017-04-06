@@ -24,6 +24,9 @@ public class App {
         Scanner taskScanner = new Scanner(tasks);
         System.out.println();
         int i = 1;
+        if (!taskScanner.hasNext()) {
+          System.out.println("No todos for today! :)");
+        }
         while (taskScanner.hasNext()) {
           System.out.print(i + " - ");
           System.out.println(taskScanner.nextLine());
