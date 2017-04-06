@@ -14,19 +14,11 @@ import java.util.Scanner;
 public class App {
 
   public static void main(String[] args) {
-    Path usagePath = Paths.get("assets/usage.csv");
     Path tasksPath = Paths.get("assets/tasks.csv");
-    File usage = new File(String.valueOf(usagePath));
-    File tasks = new File("assets/tasks.csv");
+    File tasks = new File(String.valueOf(tasksPath));
+    Usage usage = new Usage();
     if (args.length == 0) {
-      try {
-        Scanner usageScanner = new Scanner(usage);
-        while (usageScanner.hasNext()) {
-          System.out.println(usageScanner.nextLine());
-        }
-      } catch (FileNotFoundException e) {
-        e.printStackTrace();
-      }
+      usage.display();
     } else if (args.length > 0 && args[0].equals("-l")) {
       try {
         Scanner taskScanner = new Scanner(tasks);
@@ -44,7 +36,7 @@ public class App {
         e.printStackTrace();
       }
     } else if (args.length > 0 && args[0].equals("-a")) {
-      List<String> newTask = new ArrayList<String>();
+      List<String> newTask = new ArrayList<>();
       newTask.add(args[1]);
       try {
         Files.write(tasksPath, newTask);
