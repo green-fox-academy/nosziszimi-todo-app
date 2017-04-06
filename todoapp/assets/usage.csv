@@ -1,0 +1,9 @@
+
+Java Todo application
+=====================
+
+Command line arguments:
+ -l  Lists all the tasks
+ -a  Adds new task
+ -r  Removes a task
+ -c  Completes a task
