@@ -69,20 +69,22 @@ public class ToDoList {
   }
 
   void list() {
-    try {
-      Scanner taskScanner = new Scanner(file);
-      System.out.println();
-      int i = 1;
-      if (!taskScanner.hasNext()) {
-        System.out.println("No todos for today! :)");
-      }
-      while (taskScanner.hasNext()) {
-        System.out.print(i + " - ");
-        System.out.println(taskScanner.nextLine());
+    listOfToDoFromFile();
+    String check;
+    int i = 1;
+    System.out.println();
+    if (tasks.size() > 0) {
+      for (ToDo todo : tasks) {
+        if (todo.isDone) {
+          check = "[x]";
+        } else {
+          check = "[ ]";
+        }
+        System.out.println(i + " - " + check + " " + todo.task);
         i++;
       }
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
+    } else {
+      System.out.println("No todos for today! :)");
     }
   }
 
