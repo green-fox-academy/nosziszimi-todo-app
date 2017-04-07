@@ -95,18 +95,17 @@ public class ToDoList {
   }
 
   void check(String[] args) {
+    listOfToDoFromFile();
+    int index = Integer.parseInt(args[1]);
+    tasks.get(index-1).isDone = true;
+    writeListToFile();
+  }
 
-    try {
-      List<String> lines = Files.readAllLines(path);
-      ArrayList<String> lines2 = new ArrayList<>();
-      for (String line : lines) {
-        lines2.add(line);
-      }
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
+  void remove(String[] args) {
+    listOfToDoFromFile();
+    int index = Integer.parseInt(args[1]);
+    tasks.remove(index-1);
+    writeListToFile();
   }
 }
 
