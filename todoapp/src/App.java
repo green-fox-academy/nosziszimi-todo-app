@@ -18,6 +18,10 @@ public class App {
       todo.check(args);
     } else if (args.length > 0 && args[0].equals("-r")) {
       todo.remove(args);
+    } else {
+      System.out.println();
+      System.out.println("Unsupported argument");
+      usage.display();
     }
   }
 }
