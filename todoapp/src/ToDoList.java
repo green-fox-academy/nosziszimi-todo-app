@@ -108,8 +108,19 @@ public class ToDoList {
 
   void remove(String[] args) {
     listOfToDoFromFile();
-    int index = Integer.parseInt(args[1]);
-    tasks.remove(index-1);
+    try {
+      int index = Integer.parseInt(args[1]);
+      tasks.remove(index-1);
+    } catch (ArrayIndexOutOfBoundsException ex) {
+      System.out.println();
+      System.out.println("Error");
+    } catch (IndexOutOfBoundsException ex) {
+      System.out.println();
+      System.out.println("Unable to remove: index is out of bound");
+    } catch (NumberFormatException ex) {
+      System.out.println();
+      System.out.println("Unable to remove: index is not a number");
+    }
     writeListToFile();
   }
 }
