@@ -89,14 +89,9 @@ public class ToDoList {
   }
 
   void add(String[] args) {
-    List<String> newTask = new ArrayList<>();
+    listOfToDoFromFile();
     tasks.add(new ToDo(args[1]));
-    try {
-      Files.write(path, newTask);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
+    writeListToFile();
   }
 
   void check(String[] args) {
