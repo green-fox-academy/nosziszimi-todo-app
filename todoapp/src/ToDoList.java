@@ -90,7 +90,12 @@ public class ToDoList {
 
   void add(String[] args) {
     listOfToDoFromFile();
-    tasks.add(new ToDo(args[1]));
+    if (args.length >= 2) {
+      tasks.add(new ToDo(args[1]));
+    } else {
+      System.out.println();
+      System.out.println("Unable to add: no task provided");
+    }
     writeListToFile();
   }
 
