@@ -13,7 +13,7 @@ public class Usage {
   File usage;
 
   public Usage() {
-    usagePath = Paths.get("assets/usage.csv");
+    usagePath = Paths.get("../assets/usage.csv");
     usage = new File(String.valueOf(usagePath));
   }
 
